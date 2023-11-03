@@ -1,11 +1,13 @@
-import SignUp from "./Pages/SignUp";
+import { Outlet } from "react-router-dom"
+import Navbar from "./Navbar"
 
 function App() {
   return (
-    <div>
-      <SignUp />
+    <div className="App">
+      <Navbar />
+      <Outlet />
     </div>
-  )
+  );
 }
 
 export default App;

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 // import '../PagesCSS/SignUp.css';
 
 export default function SignUp() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         username: "",
@@ -30,36 +30,39 @@ export default function SignUp() {
         })
     }
 
-    console.log(user);
+    // console.log(user);
 
-    // function signUp() {
-    //     fetch("/auth/signup", {
-    //         method: "post",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             username: user.username,
-    //             email: user.email,
-    //             password: user.password,
-    //             role: user.role
-    //         })
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if(data.Error) {
-    //             alert(data.Error);
-    //         }
-    //         else {
-    //             console.log(data.Message);
-    //             navigate("/auth/signin");
-    //         }
-    //     })
-    //     .catch(err => {
+    function signUp() {
+        console.log("here")
+        fetch("/auth/signup", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                role: user.role,
+                address: user.address,
+                phoneno: user.phone
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.Error) {
+                alert(data.Error);
+            }
+            else {
+                console.log(data.Message);
+                navigate("/auth/signin");
+            }
+        })
+        .catch(err => {
             
-    //         console.log(err)
-    //     })
-    // }
+            console.log(err)
+        })
+    }
 
 
     return (
@@ -115,13 +118,24 @@ export default function SignUp() {
                 <label>
                     <input
                         type="radio"
-                        value="Merchant"
+                        value="Artisan"
                         name="role"
-                        checked={user.role === "Merchant"}
+                        checked={user.role === "Artisan"}
                         onChange={updateUser}
                     >
                     </input>
-                    Merchant
+                    Artisan
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="Giude"
+                        name="role"
+                        checked={user.role === "Giude"}
+                        onChange={updateUser}
+                    >
+                    </input>
+                    Guide
                 </label>
             </div>
             <input
@@ -143,7 +157,7 @@ export default function SignUp() {
             >
             </input>
 
-            {/* <button className="submit-btn" type="submit" onClick={signUp}>Sign Up</button> */}
+            <button className="submit-btn" type="submit" onClick={signUp}>Sign Up</button>
 
             <div className="message">Already Have an account?
                 <NavLink style={{textDecoration: "none", color: "rgb(8,38,74)"}} to="/auth/signin"> Log In</NavLink>

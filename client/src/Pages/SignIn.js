@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { NavLink } from "react-router-dom";
-// import { UserContext } from "../LandingPage";
+import { UserContext } from "../LandingPage";
 // import '../PagesCSS/SignIn.css'
 
 export default function SignIn() {
-    // const {state, dispatch} = React.useContext(UserContext)
+    const {state, dispatch} = React.useContext(UserContext)
 
     const navigate = useNavigate();
 
@@ -27,6 +27,8 @@ export default function SignIn() {
             )
         })
     }
+
+    // console.log(user);
 
     function signIn() {
         fetch("/auth/signin", {
