@@ -17,10 +17,12 @@ mongoose.connection.on("error", (err) => {
 })
 
 require("./models/ProductModel")
+require("./models/CulturalStoryModel")
 // require("./Models/UserModel")
 // require("./Models/ClassModel")
 
 const productRouter = require('./Routes/ProductRoutes')
+const storyRouter = require('./Routes/culturalStory')
 // const authRouter = require('./Routes/AuthRoute')
 // const classRouter = require('./Routes/ClassRoutes')
 // const contentRouter = require('./Routes/ContentRoutes')
@@ -30,7 +32,7 @@ app.use(cors());
 
 app.use(express.json())
 app.use('/products', productRouter)
-// app.use('/auth', authRouter)
+app.use('/stories', storyRouter)
 // app.use('/classes', classRouter)
 // app.use('/contents', contentRouter)
 // app.use('/users', user)
