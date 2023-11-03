@@ -4,6 +4,7 @@ const Product = require('../models/ProductModel');
 
 // Create a new product
 router.post('/', async (req, res) => {
+  console.log(req.body)
   try {
     const newProduct = await Product.create(req.body);
     res.status(201).json(newProduct);
@@ -56,7 +57,7 @@ router.delete('/:productId', async (req, res) => {
   const productId = req.params.productId;
 
   try {
-    await Product.findByIdAndRemove(productId);
+    await Product.findByIdAndDelete(productId);
     res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: 'Could not delete the product.' });
