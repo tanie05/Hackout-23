@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/ProductModel'); 
+const requireLogin = require("../Middleware/requireLogin")
 
 // Create a new product
-router.post('/', async (req, res) => {
-  console.log(req.body)
+router.post('/', requireLogin, async (req, res) => {
+  // console.log(req.body)
   try {
     const newProduct = await Product.create(req.body);
     res.status(201).json(newProduct);
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 });
 
 // Read all products
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
   try {
     const products = await Product.find();
     res.status(200).json(products);
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // Read a specific product by ID
-router.get('/:productId', async (req, res) => {
+router.get('/:productId', requireLogin, async (req, res) => {
   const productId = req.params.productId;
 
   try {
@@ -39,9 +40,9 @@ router.get('/:productId', async (req, res) => {
 });
 
 // Update a product by ID
-router.put('/:productId', async (req, res) => {
+router.put('/:productId', requireLogin, async (req, res) => {
   const productId = req.params.productId;
-
+  
   try {
     const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {
       new: true,
@@ -53,7 +54,7 @@ router.put('/:productId', async (req, res) => {
 });
 
 // Delete a product by ID
-router.delete('/:productId', async (req, res) => {
+router.delete('/:productId', requireLogin, async (req, res) => {
   const productId = req.params.productId;
 
   try {
