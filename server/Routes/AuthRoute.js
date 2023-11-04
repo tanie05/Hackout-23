@@ -1,14 +1,15 @@
 const express = require("express")
 const router = express.Router()
 const mongoose = require("mongoose")
-const User = mongoose.model("User")
+// const User = mongoose.model("User")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const JWT_SECRET = process.env.JWT_SECRET
+const User = require("../Models/UserModel")
 
 
 router.post("/signup", (req, res) => {
-    
+    console.log("here");
     const {username, email, password, profileImage, role, address, phoneno} = req.body
     if(!username || !email || !password || !address) {
         return res.status(422).json({Error: "Please add all the fields"})
