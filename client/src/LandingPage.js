@@ -5,10 +5,8 @@ import SignUp from "./Pages/SignUp";
 import SignIn from "./Pages/SignIn";
 import App from "./App"
 import Home from "./Pages/Home"
-// import CreateClass from "./Pages/CreateClass";
-// import JoinClass from "./Pages/JoinClass";
-// import ClassPage from "./Pages/ClassPage";
-// import CreateContentForm from "./Pages/CreateContentForm";
+import Cart from "./Pages/Cart";
+import Profile from "./Pages/Profile"
 
 
 
@@ -37,6 +35,8 @@ const Routing = () => {
         <Route exact path="/" Component={App}>
 
             <Route exact path="" Component={Home}></Route>
+            <Route exact path="/cart" Component={Cart}></Route>
+            <Route exact path="/profile" Component={Profile}></Route>
             {/* <Route exact path="classes/createClass" Component={CreateClass}></Route>
             <Route exact path="classes/joinClass" Component={JoinClass}></Route>
             <Route exact path="classes/:classId" Component={ClassPage}></Route>
