@@ -5,6 +5,10 @@ import SignUp from "./Pages/SignUp";
 import SignIn from "./Pages/SignIn";
 import App from "./App"
 import Home from "./Pages/Home"
+import CreateProductForm from "./Pages/CreateProductForm";
+import SingleProductPage from "./Pages/SingleProductPage";
+
+import SingleStoryPage from "./Pages/SingleStoryPage";
 // import CreateClass from "./Pages/CreateClass";
 // import JoinClass from "./Pages/JoinClass";
 // import ClassPage from "./Pages/ClassPage";
@@ -36,10 +40,10 @@ const Routing = () => {
         <Route exact path="/" Component={App}>
 
             <Route exact path="" Component={Home}></Route>
-            {/* <Route exact path="classes/createClass" Component={CreateClass}></Route>
-            <Route exact path="classes/joinClass" Component={JoinClass}></Route>
-            <Route exact path="classes/:classId" Component={ClassPage}></Route>
-            <Route exact path="createcontent/:classId" Component={CreateContentForm}></Route> */}
+            <Route exact path="/createproduct" Component = {CreateProductForm} />
+            <Route exact path="/products/:productId" Component={SingleProductPage} />
+            
+            
         </Route>
     </Routes>
   )

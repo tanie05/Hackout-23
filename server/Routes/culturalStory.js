@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Storytelling = require('../models/CulturalStoryModel');
+const requireLogin  = require('../Middleware/requireLogin')
 
 // Create a new story
-router.post('/', async (req, res) => {
+router.post('/', requireLogin, async (req, res) => {
   try {
     const newStory = await Storytelling.create(req.body);
     res.status(201).json(newStory);
@@ -13,7 +14,7 @@ router.post('/', async (req, res) => {
 });
 
 // Read all stories
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
   try {
     const stories = await Storytelling.find();
     res.status(200).json(stories);
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
 });
 
 // Read a specific story by ID
-router.get('/:storyId', async (req, res) => {
+router.get('/:storyId',requireLogin, async (req, res) => {
   const storyId = req.params.storyId;
 
   try {
@@ -38,7 +39,7 @@ router.get('/:storyId', async (req, res) => {
 });
 
 // Update a story by ID
-router.put('/:storyId', async (req, res) => {
+router.put('/:storyId', requireLogin, async (req, res) => {
   const storyId = req.params.storyId;
 
   try {
@@ -52,7 +53,7 @@ router.put('/:storyId', async (req, res) => {
 });
 
 // Delete a story by ID
-router.delete('/:storyId', async (req, res) => {
+router.delete('/:storyId', requireLogin, async (req, res) => {
   const storyId = req.params.storyId;
 
   try {
